@@ -1,0 +1,1 @@
+If you want the data then fetch this repository, go to the analysis/data directory, enter "make" into the terminal, and then open the .RData file that results. If you make any changes to either of the gather.R files or the mergedata.R file, then make sure you run "make cleanMerge all" in the terminal.
