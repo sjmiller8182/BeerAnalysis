@@ -1,0 +1,12 @@
+---
+title: "CDA and EDA"
+author: "Kevin Thompson and Stuart Miller"
+date: "June 14, 2019"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
