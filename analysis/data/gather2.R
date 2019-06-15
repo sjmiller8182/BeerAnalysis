@@ -5,8 +5,14 @@
 #############
 
 # read in dataset
-brew_data <- read.csv("analysis/data/Breweries.csv")
+brewery_data <- read.csv("Breweries.csv")
 
-#correct data types
-brew_data$Brew_ID <- as.character(brew_data$Brew_ID)
-brew_data$Name <- as.character(brew_data$Name)
+# correct data types
+brewery_data$Brew_ID <- as.character(brewery_data$Brew_ID)
+brewery_data$Name <- as.character(brewery_data$Name)
+
+# change Brew_ID column name to Brewery_id for consistency between datasets
+colnames(brewery_data)[colnames(brewery_data) == "Brew_ID"] <- "Brewery_id"
+
+# rename names column
+colnames(brewery_data)[colnames(brewery_data) == "Name"] <- "Brewery_name"
