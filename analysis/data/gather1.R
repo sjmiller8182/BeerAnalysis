@@ -4,6 +4,7 @@
 # Last updated June 15, 2019
 #############
 
+#read in dataset
 beer_data <- read.csv("analysis/data/Beers.csv")
 
 
