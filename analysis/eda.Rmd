@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Load Libraries
 
 ```{r libraries, message=FALSE}
-library(dplyr)
+library(tidyverse)
 library(ggplot2)
 library(reshape2)
 ```
@@ -28,6 +28,8 @@ load('./data/.RData')
 ```
 
 # EDA 
+
+The file contains base EDA preformed. This will be followed with a final analysis file.
 
 ## Method
 
@@ -265,6 +267,8 @@ ggplot(IBUByState.long[IBUByState.long$variable %in% c('Mean','Median'), ],
   xlab('State') + ylab('Statistic Value')
 ```
 
+
+
 ```{r fig.width=15, fig.height=7}
 ggplot(IBUByState.long[IBUByState.long$variable %in% c('Mean','Std'), ], 
        aes(x=State, y=value, fill = variable)) +
@@ -280,9 +284,6 @@ ggplot(IBUByState.long[IBUByState.long$variable %in% c('Max','Min'), ],
   ggtitle('Max and Min of IBU per State') +
   xlab('State') + ylab('Statistic Value')
 ```
-
-
-
 
 #### Plots of `ABV` Statistics Per State
 
