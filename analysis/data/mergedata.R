@@ -3,5 +3,11 @@
 # Authors: Kevin Thompson and Stuart Miller
 # Last updated June 15, 2019
 ############
+library(dplyr)
+library(naniar)
+
 
 merged_data <- merge(brewery_data, beer_data, by="Brewery_id", all=TRUE)
+nabular_data <- merged_data %>%
+                  bind_shadow()
+  

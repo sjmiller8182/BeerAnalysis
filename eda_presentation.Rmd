@@ -6,7 +6,43 @@ output: slidy_presentation
 ---
 
 ```{r setup, include=FALSE}
+library(tidyverse)
+library(naniar)
+library(cowplot)
+
 knitr::opts_chunk$set(echo = FALSE)
+load(file = "analysis/data/.RData")
+
 ```
 
+
+# Missingness
+```{r missingness, echo=TRUE}
+
+#missingness and number of beers between states
+plot1 <- nabular_data %>%
+  group_by(State) %>%
+  summarize(num_miss_IBU = n_miss(IBU),
+            num_beers = length(unique(Beer_ID))) %>%
+  ggplot(aes(x=num_beers, y=num_miss_IBU)) +
+  geom_point() +
+  labs(title="Missingness of IBU vs Number of Beers in Each State", x="Number of Unique Beers Brewed", y="# Missing IBU Values")
+
+#missingness by style
+plot2 <- nabular_data %>%
+  group_by(ShortStyle) %>%
+  summarize(perc_miss_IBU = prop_miss(IBU),
+            num_miss_IBU = n_miss(IBU)) %>%
+  filter(num_miss_IBU > 15) %>%
+  ggplot(aes(x=reorder(ShortStyle, desc(perc_miss_IBU)), y=perc_miss_IBU)) +
+  geom_col() +
+  labs(title="Missingness of IBU by Beer Style", x = "Beer Style", y = "% Missing IBU Values")
+
+gA <- ggplotGrob(plot1)
+gB <- ggplotGrob(plot2)
+grid::grid.newpage()
+grid::grid.draw(rbind(gA, gB))
+
+
+```
 
