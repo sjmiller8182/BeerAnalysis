@@ -1,6 +1,6 @@
 ---
 title: "Beer_Analysis_EDA"
-author: "Stuart Miller"
+author: "Kevin Thompson and Stuart Miller"
 date: "6/16/2019"
 output: html_document
 ---
@@ -154,8 +154,8 @@ The table below, shows the number of missing values (`NA`) for `IBU` and `ABV`. 
 
 | Column Name   | Number of Missing Values| Percent of Values Missing|
 |:-------------:|------------------------:|-------------------------:|
-| ABV           | 1005                    |41.70%                    |
-| IBU           | 62                      |2.57%                     |
+| IBU           | 1005                    |41.70%                    |
+| ABV           | 62                      |2.57%                     |
 
 These missing data summaries suggests the question: 'how are these missing values distributed over the factors?' Look at missing IBU values per state. 
 
