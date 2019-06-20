@@ -43,6 +43,43 @@ gB <- ggplotGrob(plot2)
 grid::grid.newpage()
 grid::grid.draw(rbind(gA, gB))
 
+```
+
+***
+
+```{r missByState, echo=TRUE}
+merged_data %>%
+  group_by(State) %>%
+  summarize(num_miss = n_miss(IBU),
+            p_miss = prop_miss(IBU)) %>%
+  filter(num_miss > 10) %>%
+  ggplot(aes(x=reorder(State, desc(p_miss)), y=p_miss)) +
+  geom_col() +
+  labs(title="IBU - % Missing By State", x="State", y="% IBU Values Missing")
 
 ```
+
+***
+
+
+```{r ABV, echo=TRUE, warning=FALSE}
+#Deletes missing data, but this is fine because only 2% of ABV missing out of 2410 obs.
+
+merged_data %>%
+  ggplot(aes(x = ABV)) + 
+  geom_histogram(bins = 30) +
+  labs(title="Distribution of Alcohol By Volume", x="Alcohol By Volume", y="Count")
+
+```
+
+***
+
+```{r comparison, echo=TRUE, warning=FALSE}
+merged_data %>%
+  ggplot(aes(x=IBU, y=ABV)) +
+  geom_point(alpha = 0.1) +
+  labs(title = "ABV vs IBU")
+```
+
+
 
