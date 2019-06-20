@@ -1,6 +1,6 @@
 ---
 title: "Beer_Analysis_EDA"
-author: "Stuart Miller"
+author: "Kevin Thompson and Stuart Miller"
 date: "6/16/2019"
 output: html_document
 ---
