@@ -1,7 +1,7 @@
 #############
 # Gather file for Beers.csv
 # Authors: Kevin Thompson and Stuart Miller
-# Last updated June 15, 2019
+# Last updated June 20, 2019
 #############
 library(tidyverse)
 library(naniar)

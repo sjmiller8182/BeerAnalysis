@@ -1,14 +1,13 @@
 ---
 title: "Analysis of Breweries and Beers"
 author: "Kevin Thompson and Stuart Miller"
-date: "June 14, 2019"
+date: "June 20, 2019"
 output: slidy_presentation
 ---
 
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(naniar)
-library(cowplot)
 
 knitr::opts_chunk$set(echo = FALSE)
 load(file = "analysis/data/.RData")
