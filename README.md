@@ -1,10 +1,21 @@
 # beeranalysis
 For DS 6306
 
+## Purpose
+
+To explore a dataset of breweries and beers, attempting to find something interesting in the data.
+
+## Analysis and Presentation
+
+* Presentation1; link and link to video
+* Presentation2; link and link to video
+* Rmd and kitted html; link html to previewer
+
 ## EDA
 
 * [Exploratory Analysis Presentation](http://htmlpreview.github.io/?https://github.com/KThompson0308/beeranalysis/blob/master/eda_presentation.html): A presentation showing some work one the EDA.
 * For full EDA work, see [Base EDA](http://htmlpreview.github.io/?https://github.com/KThompson0308/beeranalysis/blob/master/analysis/eda.html).
+* For more information on the data cleaning and environment, see the [Codebook](https://github.com/KThompson0308/beeranalysis/blob/master/CodeBook.md).
 
 ## Data
 
