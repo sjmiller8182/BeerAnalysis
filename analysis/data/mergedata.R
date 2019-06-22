@@ -7,7 +7,7 @@ library(dplyr)
 library(naniar)
 
 
-merged_data <- merge(brewery_data, beer_data, by="Brewery_id", all=TRUE)
+merged_data <- merge(brewery_data, beer_data, by="Brewery_id", all=FALSE)
 nabular_data <- merged_data %>%
                   bind_shadow()
   

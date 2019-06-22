@@ -30,7 +30,7 @@ plot1 <- nabular_data %>%
 #missingness by style
 plot2 <- nabular_data %>%
   group_by(ShortStyle) %>%
-  summarize(perc_miss_IBU = prop_miss(IBU),
+  summarize(perc_miss_IBU = prop_miss(IBU) * 100,
             num_miss_IBU = n_miss(IBU)) %>%
   filter(num_miss_IBU > 15) %>%
   ggplot(aes(x=reorder(ShortStyle, desc(perc_miss_IBU)), y=perc_miss_IBU)) +
@@ -50,7 +50,7 @@ grid::grid.draw(rbind(gA, gB))
 merged_data %>%
   group_by(State) %>%
   summarize(num_miss = n_miss(IBU),
-            p_miss = prop_miss(IBU)) %>%
+            p_miss = prop_miss(IBU) * 100) %>%
   filter(num_miss > 10) %>%
   ggplot(aes(x=reorder(State, desc(p_miss)), y=p_miss)) +
   geom_col() +
