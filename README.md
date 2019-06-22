@@ -26,11 +26,11 @@ To explore a dataset of breweries and beers, attempting to find something intere
 * [Breweries.csv](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/Breweries.csv)<sup>1</sup>: list of 558 US breweries.
 
 ## Repo Structure
-.
-├── anaylsis                   # Primary analysis files
-│   └── data                   # Raw data and merge automation files
-├── instructions               # Class project directives
-└── README.md
+    .
+    ├── analysis                # Primary analysis files
+    │    └── data               # Raw data and merge automation files
+    ├── instructions            # Class project directives
+    └── README.md
 
 **Note**: Links to rendered HTML make take a while to load, please be patient.
 
