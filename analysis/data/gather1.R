@@ -15,7 +15,7 @@ beer_data <- read_csv("Beers.csv", col_types =
                           IBU = col_double(),
                           Brewery_id = col_character(),
                           Style = col_character(),
-                          Ounces = col_factor()
+                          Ounces = col_character()
                         ))
 
 # Rename name column
