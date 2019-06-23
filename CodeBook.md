@@ -4,7 +4,7 @@ This code book describes how the beer and brewery data is imported and merged fo
 
 ## Data
 
-The two data files, [Beers.csv](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/Beers.csv) and [Breweries.csv](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/Breweries.csv), are keyed on `Brewery_id` and `Brew_ID` respectively.
+The two data files, [`Beers.csv`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/Beers.csv) and [`Breweries.csv`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/Breweries.csv), are keyed on `Brewery_id` and `Brew_ID` respectively.
 
 Data is included in git repo because it is light-weight and in git-friendly format.
 
@@ -39,13 +39,13 @@ Data generation automation is located at `./analysis/data/`. This is a `makefile
 
 ### Data Pipeline Automation
 
-Data imported into R with gather1.R and gather2.R. Once imported, the data is merged with mergedata.R and stored in .RData. This automation is callable by runnning `make` in `./analysis/Data/`.
+Data imported into R with [`gather1.R`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/gather1.R) and [`gather2.R`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/gather2.R). Once imported, the data is merged with [`mergedata.R`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/mergedata.R) and stored in .RData. This automation is callable by runnning `make` in `./analysis/Data/`.
 
 ### Mapping of Original Column Names to Cleaned Column Names
 
 #### Beer.csv
 
-Beer.csv is imported with [gather1.R](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/gather1.R).
+Beer.csv is imported with [`gather1.R`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/gather1.R).
 
 | Original Name | Imported Name | R Data Type |
 |:-----------|:-----------|:------------------|
@@ -59,7 +59,7 @@ Beer.csv is imported with [gather1.R](https://github.com/KThompson0308/beeranaly
 
 #### Brewery.csv
 
-Brewery.csv is imported with [gather2.R](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/gather2.R).
+Brewery.csv is imported with [`gather2.R`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/gather2.R).
 
 | Original Name | Imported Name | R Data Type |
 |:-----------|:-----------|:------------------|
@@ -70,7 +70,7 @@ Brewery.csv is imported with [gather2.R](https://github.com/KThompson0308/beeran
 
 #### Merge Strategy
 
-Data is merged with [mergedata.R](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/mergedata.R). Data are inner merged on `Brewery_id` with `merge` from `{base}`.
+Data is merged with [`mergedata.R`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/mergedata.R). Data are inner merged on `Brewery_id` with `merge` from `{base}`.
 
 ## R Variables
 
