@@ -1,4 +1,4 @@
-# beeranalysis
+# Beer-Brewery Analysis
 
 For DS 6306
 
