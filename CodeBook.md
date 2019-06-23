@@ -20,7 +20,7 @@ The structures of the two data files are shown with a description of the columns
   2. `Beer_ID`      - Unique identifier for the beer (character)
   3. `ABV`          - Alcohol by volume as percent of total (dbl)
   4. `IBU`          - International bitterness unit (dbl)
-  5. `Brewery_id`   - Unique identifier to match beers to breweries; foreign key to breweries.csv by `Brew_ID` (character)
+  5. `Brewery_id`   - Unique identifier to match beers to breweries; **foreign key** to breweries.csv by `Brew_ID` (character)
   6. `Style`        - Style of the beer (character)
   7. `Ounces`       - Size of the beer container (factor)
 
@@ -28,7 +28,7 @@ The structures of the two data files are shown with a description of the columns
 
 * 558 Breweries
 * Column Names (Raw)
-  1. `Brew_ID`      - Unique identifier for brewery; primary key (character)
+  1. `Brew_ID`      - Unique identifier for brewery; **primary key** (character)
   2. `Name`         - Name of the brewery (character)
   3. `City`         - Name of city where brewery is located (character)
   4. `State`        - Name of state (US) where brewery is located (character)
