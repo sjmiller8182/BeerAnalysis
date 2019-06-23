@@ -70,11 +70,16 @@ Brewery.csv is imported with [`gather2.R`](https://github.com/KThompson0308/beer
 
 #### Merge Strategy
 
-Data is merged with [`mergedata.R`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/mergedata.R). Data are inner merged on `Brewery_id` with `merge` from `{base}`.
+Data is merged with [`mergedata.R`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/mergedata.R). Data are left merged (`brewery.csv` on to `beer.csv`) by `Brewery_id` with `merge` from `{base}`.
 
 ## R Variables
 
-Main variables - dataframes, etc. used in R
+These variables are contained in `./analysis/data/`
+
+* beer_data - import of `beer.csv` as `data.frame()`.
+* brewery_data - import of `brewery.csv` as `data.frame()`.
+* merged_data - left merge of `beer.csv` and `brewery.csv` on `Brewery_id`.
+* nabular_data - all columns of merged_data with an accompanying set of columns with `_NA` appended indicating if a row contains an `NA` for the matching column. These columns are factors with two levels (`!NA` and `NA`).
 
 ## Libraries
 
