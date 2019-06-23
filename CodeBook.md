@@ -78,4 +78,8 @@ Main variables - dataframes, etc. used in R
 
 ## Libraries
 
-List libraries needed to run project
+* naniar
+* tidyverse
+  * ggplot2 
+  * dplyr
+* pastecs
