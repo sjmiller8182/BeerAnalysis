@@ -22,8 +22,8 @@ To explore a dataset of breweries and beers, attempting to find something intere
 
 ## Data
 
-* [Beers.csv](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/Beers.csv)<sup>1</sup>: list of 2410 US craft beers.
-* [Breweries.csv](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/Breweries.csv)<sup>1</sup>: list of 558 US breweries.
+* [`Beers.csv`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/Beers.csv)<sup>1</sup>: list of 2410 US craft beers.
+* [`Breweries.csv`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/Breweries.csv)<sup>1</sup>: list of 558 US breweries.
 
 ## Repo Structure
     .
