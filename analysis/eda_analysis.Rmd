@@ -22,7 +22,7 @@ library(pastecs)
 
 ### Load Data
 
-Be sure to run `make` in `./analysis/data` first.
+Be sure to run `make` in `./analysis/data` first to build data file.
 
 ```{r load_data, echo=TRUE}
 load('./data/.RData')
@@ -34,9 +34,11 @@ TODO: Add an introduciton to the project
 
 ## Analysis Questions
 
-TODO: Add short header here
+The following questions were used to drive the data exploration.
 
 ### Question 1
+
+How many breweries are present in each state?
 
 ```{r fig.width=15, fig.height=7, echo=TRUE}
 # get counts of breweries per state
@@ -55,39 +57,43 @@ ggplot(data=brewerysPerState, aes(x = reorder(State, -BreweryCount), y = Brewery
   ggtitle('Brewery Count per State')
 ```
 
-TODO: Add description
+Above is a plot of the number of breweries per state for each state and Washington DC.
+
+About one-third of the states have more than 10 breweries, while the other two-thirds have less than 10. There are 47 breweries in Colorado and 39 in Califoria, which are the top two states by brewery count. The bottom three states by brewery count with just one brewery per state are North Dakota, South Dakota, and West Virginia. There is also only one brewery in Washington DC.
 
 ### Question 2
 
-TODO: (Kevin) Add description
-
-Print 'head' and 'tail' of merged data to verify merge data looks correct.
+Print the first 6 observations and the last six observations to check the merged file. Print 'head' and 'tail' of merged data to verify merge data looks correct.
 
 ```{r, echo=TRUE}
 head(merged_data)
 tail(merged_data)
 ```
 
-TODO: Add description
+Based on the first 6 and last 6 rows of the merged data, the merge appears to have been executed correctly. Note that this would only catch gross errors from the merge.
 
 ### Question 3
+
+Report the number of NA's in each column.
 
 ```{r, echo=TRUE}
 nas.in.merged.data <- colSums(is.na(merged_data))
 nas.in.merged.data
 ```
 
-The table below, shows the number of missing values (`NA`) for `IBU` and `ABV`. No other columns are missing values. A large portion of the `IBU` values are missing, which would affect insightes related to `IBU`. The number of missing values for `ABV` is less significant, but caution should be taken when working with this column.
+The table below, shows the number of missing values (`NA`) for `IBU`, `ABV`, `Style`, and `ShortStyle`. A large portion of the `IBU` values are missing, which would affect insightes related to `IBU`. The number of missing values for `ABV` is less significant, but caution should be taken when working with this column. The other two columns are missing less than 1% of the rows.
 
 | Column Name   | Number of Missing Values| Percent of Values Missing|
 |:-------------:|------------------------:|-------------------------:|
 | IBU           | 1005                    |41.70%                    |
 | ABV           | 62                      |2.57%                     |
+| Style         | 5                       |0.21%                     |
+| ShortStyle    | 5                       |0.21%                     |
 
 
 ### Question 4
 
-Calculate median alcohol content and internation bitterness unit for each state.
+Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare.
 
 ```{r, echo=TRUE}
 # calc summary stats for IBU
@@ -115,7 +121,7 @@ ggplot(IBUByState.long[IBUByState.long$variable %in% c('Median'), ],
   xlab('State') + ylab('Median Value of ABV')
 ```
 
-TODO: Add description of this graph
+The plot above shows the median IBU values per state. The medians range from 61 to 19 with the highest median from Maine and the lowest median from Wisconsin.
 
 ```{r fig.width=15, fig.height=7, echo=TRUE}
 ggplot(ABVByState.long[ABVByState.long$variable %in% c('Median'), ], 
@@ -125,36 +131,79 @@ ggplot(ABVByState.long[ABVByState.long$variable %in% c('Median'), ],
   xlab('State') + ylab('Median Value of ABV')
 ```
 
-TODO: Add description of this graph
+The plot above shows the median ABV values per state. The medians range from 6.25% to 4% with the highest median from Washington DC and the lowest median from Utah.
 
 ### Question 5
 
+Which state has the maximum alcoholic (`ABV`) beer? Which state has the most bitter (`IBU`) beer?
+
 ```{r, echo=TRUE}
-#IBUByState.long[IBUByState.long$variable %in% c('Max','Min'), ]
 maxIBU <- IBUByState.long %>% filter(variable == 'Max') %>% arrange(-value)
-paste('State with maximum IBU beer:', as.character(maxIBU[1,'State']), sep = '')
+paste('State with maximum IBU beer:',
+      as.character(maxIBU[1,'State']),
+      'at IBU of',
+      as.character(maxIBU[1,'value']),
+      sep = ' ')
 maxABV <- ABVByState.long %>% filter(variable == 'Max') %>% arrange(-value)
-paste('State with maximum ABV beer:', as.character(maxABV[1,'State']), sep = '')
+paste('State with maximum ABV beer:',
+      as.character(maxABV[1,'State']),
+      'at ABV of',
+      as.character(maxABV[1,'value']),
+      sep = ' ')
 ```
 
-TODO: Add description
+The state producing the most bitter beer is Oregon with an IBU of 138. The state producing the most alcoholic beer is Colorado with an ABV of 12.8%.
 
 ### Question 6
 
+Compute summary statistics for the ABV variable.
+
 TODO: clean up this table
 
-```{r, echo=TRUE}
-res <- stat.desc(data.frame(merged_data$ABV))
-round(res, 4)
+```{r, echo=TRUE, warning=FALSE}
+res <- stat.desc(data.frame(merged_data$ABV))   # create stat summary
+res <- round(res, 4)   # round stat values to 4 decimal points
+
+# print out the summary stats
+paste('The mean ABV is ', res$merged_data.ABV[9]*100, '%', sep = '')
+paste('The median ABV is ', res$merged_data.ABV[8]*100, '%', sep = '')
+paste('The standard deviation of ABV is ', res$merged_data.ABV[13]*100, ' percentage points', sep = '')
+paste('The range of ABV is ', res$merged_data.ABV[6]*100, ' percentage points', sep = '')
+
+# also print a histogram for context
+ggplot(data = merged_data, aes(x = ABV)) +
+  geom_histogram(bins = 30)
 ```
 
-TODO: Add description
+The following table summerizes the summary statistics for ABV. A histgram is also provided for context.
+
+| Statistic           | Value |
+|--------------------:|------------------------:|
+| mean                | 5.98%                   |
+| median              | 5.60%                   |
+| standard deviation  | 1.35 percentage points  |
+| range               | 12.7 percentage points  |
 
 ### Question 7
 
-TODO: Add code for this; scatter plot with lm? Check for statistical significance of model?
+Is there an apparent relationship between the bitterness of the beer and its alcoholic content? Draw a scatter plot.
 
-TODO: Add description
+```{r comparison, echo=TRUE, warning=FALSE}
+# run linear regression on ABV by IBU
+linModel <- lm(merged_data$ABV ~ merged_data$IBU)
+#summary(linModel)
+
+# Plot scatter and model
+model <- linModel$model
+names(model) <- c('ABV', 'IBU')
+model %>% ggplot(aes(x = IBU, y = ABV)) +
+  geom_point(alpha = 0.1) +
+  geom_smooth( method = 'lm') +
+  labs(title = "ABV vs IBU with Regression Line")
+
+```
+
+The plot above is a scatter plot of ABV vs IBU with a linear model. A test for the linear model provides strong evidence of a linear relationship (p-value < 0.0001).
 
 ## Conclusion
 
