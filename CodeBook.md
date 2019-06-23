@@ -75,3 +75,7 @@ Data is merged with [mergedata.R](https://github.com/KThompson0308/beeranalysis/
 ## R Variables
 
 Main variables - dataframes, etc. used in R
+
+## Libraries
+
+List libraries needed to run project
