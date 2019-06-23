@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ### Load Libraries
 
-```{r libraries, message=FALSE}
+```{r libraries, echo=TRUE, message=FALSE}
 library(tidyverse)
 library(ggplot2)
 library(reshape2)
@@ -24,9 +24,10 @@ library(pastecs)
 
 Be sure to run `make` in `./analysis/data` first.
 
-```{r}
+```{r load_data, echo=TRUE}
 load('./data/.RData')
 ```
+
 ## Introduction
 
 TODO: Add an introduciton to the project
@@ -37,7 +38,7 @@ TODO: Add short header here
 
 ### Question 1
 
-```{r fig.width=15, fig.height=7}
+```{r fig.width=15, fig.height=7, echo=TRUE}
 # get counts of breweries per state
 brewerysPerState <- brewery_data %>% 
   group_by(State) %>% 
@@ -62,7 +63,7 @@ TODO: (Kevin) Add description
 
 Print 'head' and 'tail' of merged data to verify merge data looks correct.
 
-```{r}
+```{r, echo=TRUE}
 head(merged_data)
 tail(merged_data)
 ```
@@ -71,7 +72,7 @@ TODO: Add description
 
 ### Question 3
 
-```{r}
+```{r, echo=TRUE}
 nas.in.merged.data <- colSums(is.na(merged_data))
 nas.in.merged.data
 ```
@@ -88,7 +89,7 @@ The table below, shows the number of missing values (`NA`) for `IBU` and `ABV`. 
 
 Calculate median alcohol content and internation bitterness unit for each state.
 
-```{r}
+```{r, echo=TRUE}
 # calc summary stats for IBU
 IBUByState <- merged_data %>% 
   filter(!is.na(IBU)) %>%
@@ -106,7 +107,7 @@ IBUByState.long<-melt(IBUByState, id.vars = 'State')
 ABVByState.long<-melt(ABVByState, id.vars = 'State')
 ```
 
-```{r fig.width=15, fig.height=7}
+```{r fig.width=15, fig.height=7, echo=TRUE}
 ggplot(IBUByState.long[IBUByState.long$variable %in% c('Median'), ], 
        aes(x=reorder(State, -value), y=value, fill = variable)) +
     geom_bar(stat='identity', position='dodge') +
@@ -116,7 +117,7 @@ ggplot(IBUByState.long[IBUByState.long$variable %in% c('Median'), ],
 
 TODO: Add description of this graph
 
-```{r fig.width=15, fig.height=7}
+```{r fig.width=15, fig.height=7, echo=TRUE}
 ggplot(ABVByState.long[ABVByState.long$variable %in% c('Median'), ], 
        aes(x=reorder(State, -value), y=value, fill = variable)) +
     geom_bar(stat='identity', position='dodge') +
@@ -128,7 +129,7 @@ TODO: Add description of this graph
 
 ### Question 5
 
-```{r}
+```{r, echo=TRUE}
 #IBUByState.long[IBUByState.long$variable %in% c('Max','Min'), ]
 maxIBU <- IBUByState.long %>% filter(variable == 'Max') %>% arrange(-value)
 paste('State with maximum IBU beer:', as.character(maxIBU[1,'State']), sep = '')
@@ -142,7 +143,7 @@ TODO: Add description
 
 TODO: clean up this table
 
-```{r}
+```{r, echo=TRUE}
 res <- stat.desc(data.frame(merged_data$ABV))
 round(res, 4)
 ```
