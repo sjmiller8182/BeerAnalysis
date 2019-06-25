@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```{r libraries, message=FALSE}
 library(tidyverse)
-library(ggplot2)
+library(naniar)
 library(reshape2)
 library(pastecs)
 ```
@@ -39,16 +39,11 @@ TODO: Add short header here
 
 ```{r fig.width=15, fig.height=7}
 # get counts of breweries per state
-brewerysPerState <- brewery_data %>% 
+merged_data %>% 
   group_by(State) %>% 
-  summarise(Brewery_name = length(State))
-# order the result
-brewerysPerState <- brewerysPerState[order(-brewerysPerState$Brewery_name), ]
-# better name for column
-names(brewerysPerState)[2] <- 'BreweryCount'
-# plot count vs state (bar)
-ggplot(data=brewerysPerState, aes(x = reorder(State, -BreweryCount), y = BreweryCount)) +
-  geom_bar(stat = 'identity') +
+  summarise(breweries_per_state = length(State)) %>%
+  ggplot(aes(x=reorder(State, -breweries_per_state), y=breweries_per_state)) +
+  geom_col() +
   xlab('State') +
   ylab('Count') +
   ggtitle('Brewery Count per State')
@@ -72,8 +67,8 @@ TODO: Add description
 ### Question 3
 
 ```{r}
-nas.in.merged.data <- colSums(is.na(merged_data))
-nas.in.merged.data
+merged_data %>%
+  miss_var_summary()
 ```
 
 The table below, shows the number of missing values (`NA`) for `IBU` and `ABV`. No other columns are missing values. A large portion of the `IBU` values are missing, which would affect insightes related to `IBU`. The number of missing values for `ABV` is less significant, but caution should be taken when working with this column.
@@ -89,51 +84,43 @@ The table below, shows the number of missing values (`NA`) for `IBU` and `ABV`. 
 Calculate median alcohol content and internation bitterness unit for each state.
 
 ```{r}
-# calc summary stats for IBU
-IBUByState <- merged_data %>% 
-  filter(!is.na(IBU)) %>%
+# calc summary stats for ABV and IBU
+summary_df <- merged_data %>% 
+  remove_missing(na.rm=TRUE) %>%
   group_by(State) %>% 
-  summarise(Mean=mean(IBU), Max=max(IBU), Min=min(IBU), Median=median(IBU), Std=sd(IBU))
-
-# calc summary stats for ABV
-ABVByState <- merged_data %>% 
-  filter(!is.na(ABV)) %>%
-  group_by(State) %>% 
-  summarise(Mean=mean(ABV), Max=max(ABV), Min=min(ABV), Median=median(ABV), Std=sd(ABV))
-
-# melt ByState data.frames to view stats side-by-side
-IBUByState.long<-melt(IBUByState, id.vars = 'State')
-ABVByState.long<-melt(ABVByState, id.vars = 'State')
+  summarise(MeanABV=mean(ABV), MaxABV=max(ABV), MinABV=min(ABV), MedianABV=median(ABV), StdABV=sd(ABV),
+            MeanIBU=mean(IBU), MaxIBU=max(IBU), MinABV=min(IBU), MedianIBU=median(IBU), StdIBU=sd(IBU))
 ```
 
 ```{r fig.width=15, fig.height=7}
-ggplot(IBUByState.long[IBUByState.long$variable %in% c('Median'), ], 
-       aes(x=reorder(State, -value), y=value, fill = variable)) +
-    geom_bar(stat='identity', position='dodge') +
-  ggtitle('Median of IBU per State') +
-  xlab('State') + ylab('Median Value of ABV')
+summary_df %>%
+  ggplot(aes(x=reorder(State, -MedianIBU), y=MedianIBU)) +
+  geom_col() +
+  labs(title="Median IBU by State", x="State", y="Median IBU")
 ```
 
 TODO: Add description of this graph
 
 ```{r fig.width=15, fig.height=7}
-ggplot(ABVByState.long[ABVByState.long$variable %in% c('Median'), ], 
-       aes(x=reorder(State, -value), y=value, fill = variable)) +
-    geom_bar(stat='identity', position='dodge') +
-  ggtitle('Median of ABV per State') +
-  xlab('State') + ylab('Median Value of ABV')
+summary_df %>%
+  ggplot(aes(x=reorder(State, -MedianABV), y=MedianABV)) +
+  geom_col()
 ```
 
 TODO: Add description of this graph
 
 ### Question 5
 
-```{r}
-#IBUByState.long[IBUByState.long$variable %in% c('Max','Min'), ]
-maxIBU <- IBUByState.long %>% filter(variable == 'Max') %>% arrange(-value)
-paste('State with maximum IBU beer:', as.character(maxIBU[1,'State']), sep = '')
-maxABV <- ABVByState.long %>% filter(variable == 'Max') %>% arrange(-value)
-paste('State with maximum ABV beer:', as.character(maxABV[1,'State']), sep = '')
+```{r, fig.width=15, fig.height=7}
+#Max IBUs
+summary_df %>%
+  ggplot(aes(x=reorder(State, -MaxIBU), y=MaxIBU)) +
+  geom_col()
+
+#Max ABVs 
+summary_df %>%
+  ggplot(aes(x=reorder(State, -MaxABV), y=MaxABV)) +
+  geom_col()
 ```
 
 TODO: Add description
@@ -143,16 +130,24 @@ TODO: Add description
 TODO: clean up this table
 
 ```{r}
-res <- stat.desc(data.frame(merged_data$ABV))
-round(res, 4)
+merged_data %>%
+  summary()
 ```
 
 TODO: Add description
 
 ### Question 7
 
-TODO: Add code for this; scatter plot with lm? Check for statistical significance of model?
+```{r scatterplot/regression}
+merged_data %>%
+  remove_missing(na.rm=TRUE) %>%
+  ggplot(aes(x=IBU, y=ABV)) +
+  geom_point() +
+  geom_smooth(method="lm")
 
+lm(ABV ~ IBU, data=merged_data) %>%
+  summary()
+```
 TODO: Add description
 
 ## Conclusion
