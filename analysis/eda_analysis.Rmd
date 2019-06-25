@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```{r libraries, echo=TRUE, message=FALSE}
 library(tidyverse)
-library(ggplot2)
+library(naniar)
 library(reshape2)
 library(pastecs)
 ```
@@ -42,16 +42,11 @@ How many breweries are present in each state?
 
 ```{r fig.width=15, fig.height=7, echo=TRUE}
 # get counts of breweries per state
-brewerysPerState <- brewery_data %>% 
+merged_data %>% 
   group_by(State) %>% 
-  summarise(Brewery_name = length(State))
-# order the result
-brewerysPerState <- brewerysPerState[order(-brewerysPerState$Brewery_name), ]
-# better name for column
-names(brewerysPerState)[2] <- 'BreweryCount'
-# plot count vs state (bar)
-ggplot(data=brewerysPerState, aes(x = reorder(State, -BreweryCount), y = BreweryCount)) +
-  geom_bar(stat = 'identity') +
+  summarise(breweries_per_state = length(State)) %>%
+  ggplot(aes(x=reorder(State, -breweries_per_state), y=breweries_per_state)) +
+  geom_col() +
   xlab('State') +
   ylab('Count') +
   ggtitle('Brewery Count per State')
@@ -74,11 +69,17 @@ Based on the first 6 and last 6 rows of the merged data, the merge appears to ha
 
 ### Question 3
 
+<<<<<<< HEAD
 Report the number of NA's in each column.
 
 ```{r, echo=TRUE}
 nas.in.merged.data <- colSums(is.na(merged_data))
 nas.in.merged.data
+=======
+```{r}
+merged_data %>%
+  miss_var_summary()
+>>>>>>> code_cleaning
 ```
 
 The table below, shows the number of missing values (`NA`) for `IBU`, `ABV`, `Style`, and `ShortStyle`. A large portion of the `IBU` values are missing, which would affect insightes related to `IBU`. The number of missing values for `ABV` is less significant, but caution should be taken when working with this column. The other two columns are missing less than 1% of the rows.
@@ -95,46 +96,60 @@ The table below, shows the number of missing values (`NA`) for `IBU`, `ABV`, `St
 
 Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare.
 
+<<<<<<< HEAD
 ```{r, echo=TRUE}
 # calc summary stats for IBU
 IBUByState <- merged_data %>% 
   filter(!is.na(IBU)) %>%
+=======
+```{r}
+# calc summary stats for ABV and IBU
+summary_df <- merged_data %>% 
+  remove_missing(na.rm=TRUE) %>%
+>>>>>>> code_cleaning
   group_by(State) %>% 
-  summarise(Mean=mean(IBU), Max=max(IBU), Min=min(IBU), Median=median(IBU), Std=sd(IBU))
-
-# calc summary stats for ABV
-ABVByState <- merged_data %>% 
-  filter(!is.na(ABV)) %>%
-  group_by(State) %>% 
-  summarise(Mean=mean(ABV), Max=max(ABV), Min=min(ABV), Median=median(ABV), Std=sd(ABV))
-
-# melt ByState data.frames to view stats side-by-side
-IBUByState.long<-melt(IBUByState, id.vars = 'State')
-ABVByState.long<-melt(ABVByState, id.vars = 'State')
+  summarise(MeanABV=mean(ABV), MaxABV=max(ABV), MinABV=min(ABV), MedianABV=median(ABV), StdABV=sd(ABV),
+            MeanIBU=mean(IBU), MaxIBU=max(IBU), MinABV=min(IBU), MedianIBU=median(IBU), StdIBU=sd(IBU))
 ```
 
+<<<<<<< HEAD
 ```{r fig.width=15, fig.height=7, echo=TRUE}
 ggplot(IBUByState.long[IBUByState.long$variable %in% c('Median'), ], 
        aes(x=reorder(State, -value), y=value, fill = variable)) +
     geom_bar(stat='identity', position='dodge') +
   ggtitle('Median of IBU per State') +
   xlab('State') + ylab('Median Value of ABV')
+=======
+```{r fig.width=15, fig.height=7}
+summary_df %>%
+  ggplot(aes(x=reorder(State, -MedianIBU), y=MedianIBU)) +
+  geom_col() +
+  labs(title="Median IBU by State", x="State", y="Median IBU")
+>>>>>>> code_cleaning
 ```
 
 The plot above shows the median IBU values per state. The medians range from 61 to 19 with the highest median from Maine and the lowest median from Wisconsin.
 
+<<<<<<< HEAD
 ```{r fig.width=15, fig.height=7, echo=TRUE}
 ggplot(ABVByState.long[ABVByState.long$variable %in% c('Median'), ], 
        aes(x=reorder(State, -value), y=value, fill = variable)) +
     geom_bar(stat='identity', position='dodge') +
   ggtitle('Median of ABV per State') +
   xlab('State') + ylab('Median Value of ABV')
+=======
+```{r fig.width=15, fig.height=7}
+summary_df %>%
+  ggplot(aes(x=reorder(State, -MedianABV), y=MedianABV)) +
+  geom_col()
+>>>>>>> code_cleaning
 ```
 
 The plot above shows the median ABV values per state. The medians range from 6.25% to 4% with the highest median from Washington DC and the lowest median from Utah.
 
 ### Question 5
 
+<<<<<<< HEAD
 Which state has the maximum alcoholic (`ABV`) beer? Which state has the most bitter (`IBU`) beer?
 
 ```{r, echo=TRUE}
@@ -150,6 +165,18 @@ paste('State with maximum ABV beer:',
       'at ABV of',
       as.character(maxABV[1,'value']),
       sep = ' ')
+=======
+```{r, fig.width=15, fig.height=7}
+#Max IBUs
+summary_df %>%
+  ggplot(aes(x=reorder(State, -MaxIBU), y=MaxIBU)) +
+  geom_col()
+
+#Max ABVs 
+summary_df %>%
+  ggplot(aes(x=reorder(State, -MaxABV), y=MaxABV)) +
+  geom_col()
+>>>>>>> code_cleaning
 ```
 
 The state producing the most bitter beer is Oregon with an IBU of 138. The state producing the most alcoholic beer is Colorado with an ABV of 12.8%.
@@ -160,6 +187,7 @@ Compute summary statistics for the ABV variable.
 
 TODO: clean up this table
 
+<<<<<<< HEAD
 ```{r, echo=TRUE, warning=FALSE}
 res <- stat.desc(data.frame(merged_data$ABV))   # create stat summary
 res <- round(res, 4)   # round stat values to 4 decimal points
@@ -173,6 +201,11 @@ paste('The range of ABV is ', res$merged_data.ABV[6]*100, ' percentage points', 
 # also print a histogram for context
 ggplot(data = merged_data, aes(x = ABV)) +
   geom_histogram(bins = 30)
+=======
+```{r}
+merged_data %>%
+  summary()
+>>>>>>> code_cleaning
 ```
 
 The following table summerizes the summary statistics for ABV. A histgram is also provided for context.
@@ -186,6 +219,7 @@ The following table summerizes the summary statistics for ABV. A histgram is als
 
 ### Question 7
 
+<<<<<<< HEAD
 Is there an apparent relationship between the bitterness of the beer and its alcoholic content? Draw a scatter plot.
 
 ```{r comparison, echo=TRUE, warning=FALSE}
@@ -207,6 +241,19 @@ model %>% ggplot(aes(x = IBU, y = ABV)) +
 ```
 
 The plot above is a scatter plot of ABV vs IBU with a linear model. A test for the linear model provides strong evidence of a linear relationship (p-value < 0.0001). The relationship is moderately strong with a correlation coefficient of 0.67.
+=======
+```{r scatterplot/regression}
+merged_data %>%
+  remove_missing(na.rm=TRUE) %>%
+  ggplot(aes(x=IBU, y=ABV)) +
+  geom_point() +
+  geom_smooth(method="lm")
+
+lm(ABV ~ IBU, data=merged_data) %>%
+  summary()
+```
+TODO: Add description
+>>>>>>> code_cleaning
 
 ## Conclusion
 
