@@ -193,6 +193,9 @@ Is there an apparent relationship between the bitterness of the beer and its alc
 linModel <- lm(merged_data$ABV ~ merged_data$IBU)
 #summary(linModel)
 
+cor.stat <- cor.test(merged_data$ABV, merged_data$IBU)
+paste('The correlation cofficient of ABV and IBU is', cor.stat$estimate)
+
 # Plot scatter and model
 model <- linModel$model
 names(model) <- c('ABV', 'IBU')
@@ -203,7 +206,7 @@ model %>% ggplot(aes(x = IBU, y = ABV)) +
 
 ```
 
-The plot above is a scatter plot of ABV vs IBU with a linear model. A test for the linear model provides strong evidence of a linear relationship (p-value < 0.0001).
+The plot above is a scatter plot of ABV vs IBU with a linear model. A test for the linear model provides strong evidence of a linear relationship (p-value < 0.0001). The relationship is moderately strong with a correlation coefficient of 0.67.
 
 ## Conclusion
 
