@@ -85,6 +85,14 @@ These variables are contained in `./analysis/data/.RData`
 * `merged_data` - left merge of `beer.csv` and `brewery.csv` on `Brewery_id`.
 * `nabular_data` - all columns of merged_data with an accompanying set of columns with `_NA` appended indicating if a row contains an `NA` for the matching column. These columns are factors with two levels (`!NA` and `NA`).
 
+## Code
+
+* All analysis code files are located at `./analysis/`
+  * [eda_analysis.Rmd](https://github.com/KThompson0308/beeranalysis/blob/maintain_codebook/analysis/eda_analysis.Rmd) - analysis of the data set and EDA.
+  * [missing_data_analysis.R](https://github.com/KThompson0308/beeranalysis/blob/maintain_codebook/analysis/missing_data_analysis.R) - code for analyzing missing data.
+* All support code files are located at `./analysis/background_code/`
+  * [effect_size.R](https://github.com/KThompson0308/beeranalysis/blob/maintain_codebook/analysis/background_code/effect_size.R) - code for retrieving effect size for regression model.
+
 ## Libraries
 
 The following R packages are required for running the code.
