@@ -85,6 +85,9 @@ The table below, shows the number of missing values (`NA`) for `IBU`, `ABV`, `St
 | Style         | 5                       |0.21%                     |
 | ShortStyle    | 5                       |0.21%                     |
 
+Because only 2.57% of ABV is missing and there is no indication of a pattern for the missingness, we are comfortable assuming we can recover a consistent estimate of the mean for Alcohol-By-Volume after list-wise deletion of missing data. We turn to the question of missingness in IBU, which is a more complicated topic. 
+
+TODO: Missingness of IBU and recoverability of mean IBU. 
 
 ### Question 4
 
@@ -158,7 +161,7 @@ The following table summerizes the summary statistics for ABV.
 
 Is there an apparent relationship between the bitterness of the beer and its alcoholic content? Draw a scatter plot.
 
-```{r scatterplot/regression}
+```{r scatterplot/regression, echo=TRUE}
 
 # fits best-fit line to scatter plot
 merged_data %>%
@@ -180,6 +183,8 @@ get_effect_size(full_model, reduced_model)
 ```
 
 The plot above is a scatter plot of ABV vs IBU. A simple linear regression yields strong evidence of a linear relationship (p-value < 0.0001). We find that a marginal increase in IBU increases ABV by 0.03%. We compute an effect size of 0.817 using Cohen's F-squared, which means that the proportion of the variance accounted for above and beyond the sample mean of ABV is very significant. 
+
+TODO: Add scope of inference. Address missingness 
 
 
 ## Conclusion
