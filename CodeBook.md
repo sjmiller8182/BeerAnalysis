@@ -87,8 +87,10 @@ These variables are contained in `./analysis/data/`
 
 ## Libraries
 
-* naniar
-* tidyverse
+The following R packages are required for running the code.
+
+* [naniar](https://github.com/njtierney/naniar)
+* [tidyverse](https://www.tidyverse.org/)
   * ggplot2
   * dplyr
-* pastecs
+* [pastecs](https://cran.r-project.org/web/packages/pastecs/index.html)
