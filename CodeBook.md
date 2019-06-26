@@ -78,7 +78,7 @@ Data is merged with [`mergedata.R`](https://github.com/KThompson0308/beeranalysi
 
 ## R Variables
 
-These variables are contained in `./analysis/data/`
+These variables are contained in `./analysis/data/.RData`
 
 * `beer_data` - import of `beer.csv` as `data.frame()`.
 * `brewery_data` - import of `brewery.csv` as `data.frame()`.
