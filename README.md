@@ -29,8 +29,10 @@ To explore a dataset of breweries and beers, attempting to find something intere
 ## Repo Structure
     .
     ├── analysis                # Primary analysis files
-    │    └── data               # Raw data and merge automation files
+    │    ├── data               # Raw data and merge automation files
+    |    └── background_code    # Support code used in the analysis
     ├── instructions            # Class project directives
+    ├── CodeBook.md             # Information regarding the computation environment, code, and data
     └── README.md
 
 **Note**: Links to rendered HTML may take a while to load, please be patient.
