@@ -8,16 +8,17 @@ Created by [Kevin Thompson](https://github.com/KThompson0308) and [Stuart Miller
 
 To explore a dataset of breweries and beers, attempting to find something interesting in the data.
 
-## Analysis and Presentation
+## Analysis 
 
-* Presentation1; link and link to video
-* Presentation2; link and link to video
-* Rmd and kitted html; link html to previewer
+### Presentation
 
-## EDA
+* Presentation1 link and link to video
+* Presentation2 link and link to video
+* [Exploratory Analysis Presentation](http://htmlpreview.github.io/?https://github.com/KThompson0308/beeranalysis/blob/master/eda_presentation.html): A presentation covering the analysis and EDA work.
 
-* [Exploratory Analysis Presentation](http://htmlpreview.github.io/?https://github.com/KThompson0308/beeranalysis/blob/master/eda_presentation.html): A presentation showing some work one the EDA.
-* For full EDA work, see the [preliminary EDA](http://htmlpreview.github.io/?https://github.com/KThompson0308/beeranalysis/blob/master/analysis/eda.html).
+### R Analysis Files
+
+* [EDA_Analysis](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/eda_analysis.Rmd): A markdown file with the analysis and EDA work.
 * For more information on the data cleaning and environment, see the [Codebook](https://github.com/KThompson0308/beeranalysis/blob/master/CodeBook.md).
 
 ## Data
@@ -28,8 +29,10 @@ To explore a dataset of breweries and beers, attempting to find something intere
 ## Repo Structure
     .
     ├── analysis                # Primary analysis files
-    │    └── data               # Raw data and merge automation files
+    │    ├── data               # Raw data and merge automation files
+    |    └── background_code    # Support code used in the analysis
     ├── instructions            # Class project directives
+    ├── CodeBook.md             # Information regarding the computational environment, code, and data
     └── README.md
 
 **Note**: Links to rendered HTML may take a while to load, please be patient.
