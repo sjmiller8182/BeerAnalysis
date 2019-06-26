@@ -120,7 +120,6 @@ The plot above shows the median ABV values per state. The medians range from 6.2
 
 ### Question 5
 
-<<<<<<< HEAD
 Which state has the maximum alcoholic (`ABV`) beer? Which state has the most bitter (`IBU`) beer?
 
 ```{r, fig.width=15, fig.height=7}
@@ -141,16 +140,12 @@ The state producing the most bitter beer is Oregon with an IBU of 138. The state
 
 Compute summary statistics for the ABV variable.
 
-TODO: clean up this table
-
-<<<<<<< HEAD
-
 ```{r, echo=TRUE}
 merged_data %>%
   summary()
 ```
 
-The following table summerizes the summary statistics for ABV. A histogram is also provided for context.
+The following table summerizes the summary statistics for ABV.
 
 | Statistic           | Value |
 |--------------------:|------------------------:|
@@ -184,7 +179,7 @@ reduced_model <- lm(ABV ~ 1, data=merged_data)
 get_effect_size(full_model, reduced_model)
 ```
 
-The plot above is a scatter plot of ABV vs IBU with a linear model. A test for the linear model provides strong evidence of a linear relationship (p-value < 0.0001). The relationship is moderately strong with a correlation coefficient of 0.67. We find that a marginal increase in IBU increases ABV by 0.03%. We compute an effect size of 0.817 using Cohen's F-squared, which means that the proportion of the variance accounted for above and beyond the sample mean of the ABV is very significant. 
+The plot above is a scatter plot of ABV vs IBU. A simple linear regression yields strong evidence of a linear relationship (p-value < 0.0001). We find that a marginal increase in IBU increases ABV by 0.03%. We compute an effect size of 0.817 using Cohen's F-squared, which means that the proportion of the variance accounted for above and beyond the sample mean of ABV is very significant. 
 
 
 ## Conclusion
