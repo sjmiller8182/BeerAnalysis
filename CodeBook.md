@@ -68,7 +68,7 @@ Brewery.csv is imported with [`gather2.R`](https://github.com/KThompson0308/beer
 | State      | State      | character         |
 | Name       | Brewery_name | character       |
 
-### Generated Columns in `merged_data`
+#### Generated Columns in `merged_data`
 
 `ShortStyle`: computed by extracting the most relevant string from style. Since this column is computed from `Style` it will have the same missingness structure as `Style`.
 
