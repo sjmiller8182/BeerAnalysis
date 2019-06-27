@@ -144,7 +144,8 @@ The plot above shows the median IBU values per state. The medians range from 61 
 ```{r fig.width=15, fig.height=7, echo=TRUE}
 summary_df %>%
   ggplot(aes(x=reorder(State, -MedianABV), y=MedianABV)) +
-  geom_col()
+  geom_col() +
+  labs(title="Median ABV by State", x="State", y="Median ABV")
 
 ```
 
@@ -158,12 +159,14 @@ Which state has the maximum alcoholic (`ABV`) beer? Which state has the most bit
 #Max IBUs
 summary_df %>%
   ggplot(aes(x=reorder(State, -MaxIBU), y=MaxIBU)) +
-  geom_col()
+  geom_col() +
+  labs(title="Maximum IBU by State", x="State", y="Maximum IBU")
 
 #Max ABVs 
 summary_df %>%
   ggplot(aes(x=reorder(State, -MaxABV), y=MaxABV)) +
-  geom_col()
+  geom_col() +
+  labs(title="Maximum ABV by State", x="State", y="Maximum ABV")
 ```
 
 The state producing the most bitter beer is Oregon with an IBU of 138. The state producing the most alcoholic beer is Colorado with an ABV of 12.8%.
