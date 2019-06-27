@@ -1,5 +1,5 @@
 #############
-# Gather file for Breweries.csv
+# Gather file for Breweries.csv and Abbreviations.csv
 # Authors: Kevin Thompson and Stuart Miller
 # Last updated June 15, 2019
 #############
@@ -14,6 +14,12 @@ brewery_data <- read_csv("Breweries.csv", col_types =
                              City = col_character(),
                              State = col_character()
                            ))
+
+abbreviation_data <- read_csv("Abbreviations.csv", col_types = 
+                                cols(
+                                  State = col_character(),
+                                  Unabbreviated = col_character()
+                                ))
 
 # Rename columns for merging
 colnames(brewery_data)[colnames(brewery_data) == "Brew_ID"] <- "Brewery_id"
