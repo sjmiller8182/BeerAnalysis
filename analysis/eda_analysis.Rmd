@@ -44,7 +44,7 @@ The following questions were used to drive the data exploration.
 
 ```{r fig.width=15, fig.height=7, echo=TRUE}
 # get counts of breweries per state
-merged_data %>% 
+brewery_data %>% 
   group_by(State) %>% 
   summarise(breweries_per_state = length(State)) %>%
   ggplot(aes(x=reorder(State, -breweries_per_state), y=breweries_per_state)) +
