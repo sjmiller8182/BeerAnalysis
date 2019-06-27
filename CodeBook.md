@@ -102,3 +102,5 @@ The following R packages are required for running the code.
   * ggplot2
   * dplyr
 * [pastecs](https://cran.r-project.org/web/packages/pastecs/index.html)
+* [maps](https://cran.r-project.org/package=maps)
+* [mapproj](https://cran.r-project.org/package=mapproj)

@@ -18,6 +18,8 @@ library(tidyverse)
 library(naniar)
 library(reshape2)
 library(pastecs)
+library(maps)
+library(mapproj)
 ```
 
 ### Load Data
@@ -88,6 +90,33 @@ The table below, shows the number of missing values (`NA`) for `IBU`, `ABV`, `St
 Because only 2.57% of ABV is missing and there is no indication of a pattern for the missingness, we are comfortable assuming we can recover a consistent estimate of the mean for Alcohol-By-Volume after list-wise deletion of missing data. We turn to the question of missingness in IBU, which is a more complicated topic. 
 
 TODO: Missingness of IBU and recoverability of mean IBU. 
+
+```{r maps, echo=TRUE}
+source("background_code/abb2name.R")
+missing.by.state <- merged_data %>% 
+  group_by(State) %>% 
+  summarise(ABV_missing=prop_miss(ABV), IBU_missing=prop_miss(IBU))
+missing.by.state$region <- abb2state(missing.by.state$State)
+
+states <- map_data("state")
+map.df <- merge(states, missing.by.state, by="region", all.x=T)
+map.df <- map.df[order(map.df$order),]
+
+ggplot(map.df, aes(x=long,y=lat,group=group))+
+  geom_polygon(aes(fill=IBU_missing))+
+  geom_path()+ 
+  scale_fill_gradientn(colours=rev(heat.colors(10)),na.value="grey90")+
+  coord_map()+
+  labs(title = 'Percent Missing IBU by State')
+
+ggplot(map.df, aes(x=long,y=lat,group=group))+
+  geom_polygon(aes(fill=ABV_missing))+
+  geom_path()+ 
+  scale_fill_gradientn(colours=rev(heat.colors(10)),na.value="grey90")+
+  coord_map()+
+  labs(title = 'Percent Missing ABV by State')
+```
+
 
 ### Question 4
 
