@@ -16,8 +16,7 @@ To explore a dataset of breweries and beers, attempting to find something intere
 * Presentation2 link and link to video
 * [Exploratory Analysis Presentation](http://htmlpreview.github.io/?https://github.com/KThompson0308/beeranalysis/blob/master/eda_presentation.html): A short presentation covering a small subset of the EDA work.
 
-* [Case Study Presentation](http://htmlpreview.github.io/?
-https://github.com/KThompson0308/beeranalysis/blob/master/analysis/eda_analysis.html): A presentation covering our recent findings from the dataset. 
+* [Case Study Presentation](http://htmlpreview.github.io/?https://github.com/KThompson0308/beeranalysis/blob/master/analysis/eda_analysis.html): A presentation covering our recent findings from the dataset. 
 
 ### R Analysis Files
 
