@@ -212,8 +212,12 @@ The following table summerizes the summary statistics for ABV.
 
 | Statistic           | Value |
 |--------------------:|------------------------:|
-| mean                | 5.98%                   |
-| median              | 5.60%                   |
+| Min                 | 0.1%                    |
+| 1st Quartile        | 5%                      |
+| Mean                | 5.98%                   |
+| Median              | 5.60%                   |
+| 3rd Quartile        | 6.7%                    |
+| Max                 | 12.8%                   | 
 | standard deviation  | 1.35 percentage points  |
 | range               | 12.7 percentage points  |
 
