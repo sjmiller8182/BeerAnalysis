@@ -149,7 +149,7 @@ summary_df %>%
 
 ```
 
-The plot above shows the median ABV values per state. The medians range from 6.25% to 4% with the highest median from Washington DC and the lowest median from Utah.
+The plot above shows the median ABV values per state. The medians range from 6.25% to 4% with the highest median from Maine and the lowest median from Utah.
 
 ### Question 5
 
