@@ -129,6 +129,12 @@ summary_df <- merged_data %>%
   group_by(State) %>% 
   summarise(MeanABV=mean(ABV), MaxABV=max(ABV), MinABV=min(ABV), MedianABV=median(ABV), StdABV=sd(ABV),
             MeanIBU=mean(IBU), MaxIBU=max(IBU), MinABV=min(IBU), MedianIBU=median(IBU), StdIBU=sd(IBU))
+
+# build data for mapping
+summary_df$region <- abb2state(summary_df$State)
+states <- map_data("state")
+map.df <- merge(states, summary_df, by="region", all.x=T)
+map.df <- map.df[order(map.df$order),]
 ```
 
 
@@ -141,6 +147,17 @@ summary_df %>%
 
 The plot above shows the median IBU values per state. The medians range from 61 to 19 with the highest median from Maine and the lowest median from Wisconsin.
 
+```{r, echo=TRUE}
+ggplot(map.df, aes(x=long,y=lat,group=group))+
+  geom_polygon(aes(fill=MedianIBU))+
+  geom_path()+ 
+  scale_fill_gradientn(colours=rev(heat.colors(10)),na.value="grey90")+
+  coord_map()+
+  labs(title = 'Median IBU by State')
+```
+
+The heat map of median IBU by state above shows some regional clustering of median IBU. The median of the upper west states is on the higher side of IBU, the median of the midwest is near the lower end of IBU medians, and the deep south is on the top end of IBU medians. 
+
 ```{r fig.width=15, fig.height=7, echo=TRUE}
 summary_df %>%
   ggplot(aes(x=reorder(State, -MedianABV), y=MedianABV)) +
@@ -151,11 +168,22 @@ summary_df %>%
 
 The plot above shows the median ABV values per state. The medians range from 6.25% to 4% with the highest median from Maine and the lowest median from Utah.
 
+```{r, echo=TRUE}
+ggplot(map.df, aes(x=long,y=lat,group=group))+
+  geom_polygon(aes(fill=MedianABV))+
+  geom_path()+ 
+  scale_fill_gradientn(colours=rev(heat.colors(10)),na.value="grey90")+
+  coord_map()+
+  labs(title = 'Median ABV by State')
+```
+
+The heat map of median ABV by state above shows some regional clustering of median ABV. The deep south, some central south states, and some states on the east coast are near the top end of the ABV median scale. The medians of the midwest though the west coast are more moderate on the ABV median scale.
+
 ### Question 5
 
 Which state has the maximum alcoholic (`ABV`) beer? Which state has the most bitter (`IBU`) beer?
 
-```{r, fig.width=15, fig.height=7}
+```{r, fig.width=15, fig.height=7, echo=TRUE}
 #Max IBUs
 summary_df %>%
   ggplot(aes(x=reorder(State, -MaxIBU), y=MaxIBU)) +
