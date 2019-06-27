@@ -32,7 +32,7 @@ load('./data/.RData')
 
 ## Introduction
 
-TODO: Add an introduciton to the project
+This is an analysis of a dataset containing beer and brewery data. The dataset contains 2410 beers from 558 breweries in 50 states of the United States and the District of Columbia. The goal was to explore the data set and look for interesting features of the data. Once the data was explored, the analysis focused on how international bitterness unit (IBU) and alcohol by volume (ABV) of beer are distributed over states and the relationship between IBU and ABV. The analysis also includes a discussion of the missing data and how the missing data impacts making insights from the dataset.
 
 ## Analysis Questions
 
@@ -40,7 +40,7 @@ The following questions were used to drive the data exploration.
 
 ### Question 1
 
-How many breweries are present in each state?
+**How many breweries are present in each state?**
 
 ```{r fig.width=15, fig.height=7, echo=TRUE}
 # get counts of breweries per state
@@ -60,7 +60,7 @@ About one-third of the states have more than 10 breweries, while the other two-t
 
 ### Question 2
 
-Print the first 6 observations and the last six observations to check the merged file. Print 'head' and 'tail' of merged data to verify merge data looks correct.
+**Print the first 6 observations and the last six observations to check the merged file. Print 'head' and 'tail' of merged data to verify merge data looks correct.**
 
 ```{r, echo=TRUE}
 head(merged_data)
@@ -71,7 +71,7 @@ Based on the first 6 and last 6 rows of the merged data, the merge appears to ha
 
 ### Question 3
 
-Report the number of NA's in each column.
+**Report the number of NA's in each column.**
 
 ```{r}
 merged_data %>%
@@ -120,7 +120,7 @@ ggplot(map.df, aes(x=long,y=lat,group=group))+
 
 ### Question 4
 
-Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare.
+**Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare.**
 
 ```{r, echo=TRUE}
 # calc summary stats for ABV and IBU
@@ -181,7 +181,7 @@ The heat map of median ABV by state above shows some regional clustering of medi
 
 ### Question 5
 
-Which state has the maximum alcoholic (`ABV`) beer? Which state has the most bitter (`IBU`) beer?
+**Which state has the maximum alcoholic (`ABV`) beer? Which state has the most bitter (`IBU`) beer?**
 
 ```{r, fig.width=15, fig.height=7, echo=TRUE}
 #Max IBUs
@@ -201,7 +201,7 @@ The state producing the most bitter beer is Oregon with an IBU of 138. The state
 
 ### Question 6
 
-Compute summary statistics for the ABV variable.
+**Compute summary statistics for the ABV variable.**
 
 ```{r, echo=TRUE}
 merged_data %>%
@@ -219,7 +219,7 @@ The following table summerizes the summary statistics for ABV.
 
 ### Question 7
 
-Is there an apparent relationship between the bitterness of the beer and its alcoholic content? Draw a scatter plot.
+**Is there an apparent relationship between the bitterness of the beer and its alcoholic content? Draw a scatter plot.**
 
 ```{r scatterplot/regression, echo=TRUE}
 

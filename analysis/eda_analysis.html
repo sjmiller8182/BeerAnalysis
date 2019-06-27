@@ -332,14 +332,14 @@ library(mapproj)</code></pre>
 </div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>TODO: Add an introduciton to the project</p>
+<p>This is an analysis of a dataset containing beer and brewery data. The dataset contains 2410 beers from 558 breweries in 50 states of the United States and the District of Columbia. The goal was to explore the data set and look for interesting features of the data. Once the data was explored, the analysis focused on how international bitterness unit (IBU) and alcohol by volume (ABV) of beer are distributed over states and the relationship between IBU and ABV. The analysis also includes a discussion of the missing data and how the missing data impacts making insights from the dataset.</p>
 </div>
 <div id="analysis-questions" class="section level2">
 <h2>Analysis Questions</h2>
 <p>The following questions were used to drive the data exploration.</p>
 <div id="question-1" class="section level3">
 <h3>Question 1</h3>
-<p>How many breweries are present in each state?</p>
+<p><strong>How many breweries are present in each state?</strong></p>
 <pre class="r"><code># get counts of breweries per state
 merged_data %&gt;% 
   group_by(State) %&gt;% 
@@ -355,7 +355,7 @@ merged_data %&gt;%
 </div>
 <div id="question-2" class="section level3">
 <h3>Question 2</h3>
-<p>Print the first 6 observations and the last six observations to check the merged file. Print ‘head’ and ‘tail’ of merged data to verify merge data looks correct.</p>
+<p><strong>Print the first 6 observations and the last six observations to check the merged file. Print ‘head’ and ‘tail’ of merged data to verify merge data looks correct.</strong></p>
 <pre class="r"><code>head(merged_data)</code></pre>
 <pre><code>##   Brewery_id      Brewery_name        City State     Beer_name Beer_ID
 ## 1          1 NorthGate Brewing Minneapolis    MN       Pumpion    2689
@@ -397,7 +397,7 @@ merged_data %&gt;%
 </div>
 <div id="question-3" class="section level3">
 <h3>Question 3</h3>
-<p>Report the number of NA’s in each column.</p>
+<p><strong>Report the number of NA’s in each column.</strong></p>
 <pre><code>## # A tibble: 11 x 4
 ##    variable     n_miss pct_miss n_miss_cumsum
 ##    &lt;chr&gt;         &lt;int&gt;    &lt;dbl&gt;         &lt;int&gt;
@@ -473,7 +473,7 @@ ggplot(map.df, aes(x=long,y=lat,group=group))+
 </div>
 <div id="question-4" class="section level3">
 <h3>Question 4</h3>
-<p>Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare.</p>
+<p><strong>Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare.</strong></p>
 <pre class="r"><code># calc summary stats for ABV and IBU
 summary_df &lt;- merged_data %&gt;% 
   remove_missing(na.rm=TRUE) %&gt;%
@@ -517,7 +517,7 @@ map.df &lt;- map.df[order(map.df$order),]</code></pre>
 </div>
 <div id="question-5" class="section level3">
 <h3>Question 5</h3>
-<p>Which state has the maximum alcoholic (<code>ABV</code>) beer? Which state has the most bitter (<code>IBU</code>) beer?</p>
+<p><strong>Which state has the maximum alcoholic (<code>ABV</code>) beer? Which state has the most bitter (<code>IBU</code>) beer?</strong></p>
 <pre class="r"><code>#Max IBUs
 summary_df %&gt;%
   ggplot(aes(x=reorder(State, -MaxIBU), y=MaxIBU)) +
@@ -534,7 +534,7 @@ summary_df %&gt;%
 </div>
 <div id="question-6" class="section level3">
 <h3>Question 6</h3>
-<p>Compute summary statistics for the ABV variable.</p>
+<p><strong>Compute summary statistics for the ABV variable.</strong></p>
 <pre class="r"><code>merged_data %&gt;%
   summary()</code></pre>
 <pre><code>##   Brewery_id        Brewery_name           City          
@@ -599,7 +599,7 @@ summary_df %&gt;%
 </div>
 <div id="question-7" class="section level3">
 <h3>Question 7</h3>
-<p>Is there an apparent relationship between the bitterness of the beer and its alcoholic content? Draw a scatter plot.</p>
+<p><strong>Is there an apparent relationship between the bitterness of the beer and its alcoholic content? Draw a scatter plot.</strong></p>
 <pre class="r"><code># fits best-fit line to scatter plot
 merged_data %&gt;%
   remove_missing(na.rm=TRUE) %&gt;%
