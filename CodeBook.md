@@ -70,7 +70,8 @@ Brewery.csv is imported with [`gather2.R`](https://github.com/KThompson0308/beer
 
 #### Generated Columns in `merged_data`
 
-`ShortStyle`: computed by extracting the most relevant string from style. Since this column is computed from `Style` it will have the same missingness structure as `Style`.
+* `ShortStyle`: computed by extracting the most relevant string from style. Since this column is computed from `Style` it will have the same missingness structure as `Style`.
+* `region`: used to map `merged_data` to the U.S. map data for heat map plotting. Generated using [`Abbreviations.csv`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/Abbreviations.csv).
 
 #### Merge Strategy
 
@@ -104,3 +105,7 @@ The following R packages are required for running the code.
 * [pastecs](https://cran.r-project.org/web/packages/pastecs/index.html)
 * [maps](https://cran.r-project.org/package=maps)
 * [mapproj](https://cran.r-project.org/package=mapproj)
+
+## Other Resources
+
+* [`Abbreviations.csv`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/Abbreviations.csv): custom file used for converting U.S. state abbrevations to lower case, full state names.
