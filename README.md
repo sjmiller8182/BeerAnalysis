@@ -1,7 +1,5 @@
 # Beer-Brewery Analysis
 
-For DS 6306
-
 Created by [Kevin Thompson](https://github.com/KThompson0308) and [Stuart Miller](https://github.com/sjmiller8182)
 
 ## Purpose
