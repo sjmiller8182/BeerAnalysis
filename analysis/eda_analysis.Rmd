@@ -82,9 +82,6 @@ The table below, shows the number of missing values (`NA`) for `IBU`, `ABV`, `St
 | Style         | 5                       |0.21%                     |
 | ShortStyle    | 5                       |0.21%                     |
 
-Because only 2.57% of ABV is missing and there is no indication of a pattern for the missingness, we are comfortable assuming we can recover a consistent estimate of the mean for Alcohol-By-Volume after list-wise deletion of missing data. The missingness is quite low between states and there doesn't appear to be any distinct geographical pattern. 
-
-
 ```{r maps, echo=TRUE}
 missing.by.state <- merged_data %>% 
   group_by(region) %>% 
@@ -102,6 +99,8 @@ ggplot(map.df, aes(x=long,y=lat,group=group, fill=ABV_missing))+
   coord_map()+
   labs(title = 'Percent Missing ABV by State')
 ```
+
+Because only 2.57% of ABV is missing and there is no indication of a pattern for the missingness, we are comfortable assuming we can recover a consistent estimate of the mean for Alcohol-By-Volume after list-wise deletion of missing data. The missingness is quite low between states and there doesn't appear to be any distinct geographical pattern. 
 
 We turn to the question of missingness in IBU, which is a more complicated topic. 
 
@@ -127,8 +126,9 @@ nabular_data %>%
 ```
 
 
-
 There is clearly a relationship between the beer style, location, and missingness of IBU, so IBU cannot be missing completely at random; therefore, listwise deletion is not acceptable. We will have to look into the question of whether we can build a decent imputation model for IBU at some point in the future. Depending on the nature of the missingness, most parameters for the distribution of IBU may not be recoverable. 
+
+Since there is missing data that does not appear to be at random, we suspect the results of this analysis could be biased.
 
 **Comparison of Alcohol Content and Bitterness between States**
 
@@ -276,7 +276,7 @@ The plot above is a scatter plot of ABV vs IBU. A simple linear regression yield
 * Most beers have a moderate ABV value (5% - 6.7%).
 * There is evidence of a linear relationship between ABV and IBU.
 
-### inferential Scope of Analysis**
+### Inferential Scope of Analysis
 
 The details behind the sampling process are unkwown, so it is unclear whether we can generalize our results to a wider population. We also cannot infer causation because there is insufficient theoretical knowledge to make good causal assumptions, especially wit hthe absence of randomization. The missingness of the data poses a problem as well. While the missingness of ABV lends itself to listwise deletion, the missingness of IBU is clearly not completely at random. At best, the missingness of IBU is caused primarily by its location and beer style, but further examination is needed to determine whether an imputation model can recover a consistent estimate of key parameters, like the population mean. If a consistent estimate cannot be recovered, then sampling processes and data governance must be re-examined to obtain better results. 
 
