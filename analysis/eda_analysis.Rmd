@@ -240,7 +240,7 @@ The following table summerizes the summary statistics for ABV.
 | standard deviation  | 1.35 percentage points  |
 | range               | 12.7 percentage points  |
 
-
+The bulk of the data has an ABV between 5% and 6.7%. The mean and median are fairly different on this scale, likely indicating skew or influence of outliers in the distribution of this variable.
 
 **Is there an apparent relationship between the bitterness of the beer and its alcoholic content?**
 
@@ -269,6 +269,14 @@ The plot above is a scatter plot of ABV vs IBU. A simple linear regression yield
 
 
 ## Conclusion
+
+### Results of the Exploration and Analysis
+
+* There appears to be geographoc clustering of the median IBU and median ABV of states.
+* Most beers have a moderate ABV value (5% - 6.7%).
+* There is evidence of a linear relationship between ABV and IBU.
+
+### inferential Scope of Analysis**
 
 The details behind the sampling process are unkwown, so it is unclear whether we can generalize our results to a wider population. We also cannot infer causation because there is insufficient theoretical knowledge to make good causal assumptions, especially wit hthe absence of randomization. The missingness of the data poses a problem as well. While the missingness of ABV lends itself to listwise deletion, the missingness of IBU is clearly not completely at random. At best, the missingness of IBU is caused primarily by its location and beer style, but further examination is needed to determine whether an imputation model can recover a consistent estimate of key parameters, like the population mean. If a consistent estimate cannot be recovered, then sampling processes and data governance must be re-examined to obtain better results. 
 
