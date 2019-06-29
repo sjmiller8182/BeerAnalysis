@@ -201,3 +201,12 @@ imputed_data %>%
 
 imputed_data %>%
   ggplot(aes(x=IBU, y=ABV, fill=IBU_NA)) + geom_histogram()
+
+# linear model; all yield similar results
+model1 <- lm(data=imputed_data, ABV ~ IBU + ShortStyle)
+model2 <- lm(data=imputed_data, ABV ~ IBU)
+model3 <- lm(data=merged_data, ABV ~ IBU)
+
+summary(model1)
+summary(model2)
+summary(model3)
