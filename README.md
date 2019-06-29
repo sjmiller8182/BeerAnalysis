@@ -1,7 +1,5 @@
 # Beer-Brewery Analysis
 
-For DS 6306
-
 Created by [Kevin Thompson](https://github.com/KThompson0308) and [Stuart Miller](https://github.com/sjmiller8182)
 
 ## Purpose
@@ -12,26 +10,30 @@ To explore a dataset of breweries and beers, attempting to find something intere
 
 ### Presentation
 
-* Presentation1 link and link to video
-* Presentation2 link and link to video
-* [Exploratory Analysis Presentation](http://htmlpreview.github.io/?https://github.com/KThompson0308/beeranalysis/blob/master/eda_presentation.html): A presentation covering the analysis and EDA work.
+* Kevin's Presentation here
+* [Analysis Presentation by Stuart Miller](https://github.com/KThompson0308/beeranalysis/blob/master/presentations/Analysis_Presentation_Stuart_Miller.pdf): A presentation covering the analysis.
+  * [Presentation Video](https://youtu.be/E9f5CHflCzM)
+* [Exploratory Analysis Presentation](http://htmlpreview.github.io/?https://github.com/KThompson0308/beeranalysis/blob/master/presentations/eda_presentation.html): A short presentation covering a small subset of the EDA work.
 
-### R Analysis Files
+### Analysis Files
 
-* [EDA_Analysis](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/eda_analysis.Rmd): A markdown file with the analysis and EDA work.
-* For more information on the data cleaning and environment, see the [Codebook](https://github.com/KThompson0308/beeranalysis/blob/master/CodeBook.md).
+* [EDA Analysis (html)](http://htmlpreview.github.io/?https://github.com/KThompson0308/beeranalysis/blob/master/analysis/eda_analysis.html): A presentation covering our recent findings from the dataset. 
+* [EDA_Analysis (Rmd)](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/eda_analysis.Rmd): A markdown file with the analysis and EDA work.
 
 ## Data
 
 * [`Beers.csv`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/Beers.csv)<sup>1</sup>: list of 2410 US craft beers.
 * [`Breweries.csv`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/Breweries.csv)<sup>1</sup>: list of 558 US breweries.
 
+## Codebook
+
+The [Codebook](https://github.com/KThompson0308/beeranalysis/blob/master/CodeBook.md) provides additional details on the regarding the computational environment, code, and data.
+
 ## Repo Structure
     .
     ├── analysis                # Primary analysis files
-    │    ├── data               # Raw data and merge automation files
-    |    └── background_code    # Support code used in the analysis
-    ├── instructions            # Class project directives
+    │    └── data               # Raw data and merge automation files
+    ├── presentations           # Presentions covering the EDA, analysis, and findings
     ├── CodeBook.md             # Information regarding the computational environment, code, and data
     └── README.md
 

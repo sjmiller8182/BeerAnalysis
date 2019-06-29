@@ -1,7 +1,7 @@
 ---
 title: "CDA and EDA"
 author: "Kevin Thompson and Stuart Miller"
-date: "Last Updated June 27, 2019"
+date: "Last Updated June 29, 2019"
 output: html_document
 ---
 
@@ -14,10 +14,9 @@ knitr::opts_chunk$set(echo = FALSE)
 ### Load Libraries
 
 ```{r libraries, echo=TRUE, message=FALSE}
+# load libraries used in this analysis
 library(tidyverse)
 library(naniar)
-library(reshape2)
-library(pastecs)
 library(maps)
 library(mapproj)
 ```
@@ -27,6 +26,7 @@ library(mapproj)
 Be sure to run `make` in `./analysis/data` first to build data file.
 
 ```{r load_data, echo=TRUE}
+# load data from `make` operation listed above
 load('./data/.RData')
 ```
 
@@ -59,6 +59,8 @@ About one-third of the states have more than 10 breweries, while the other two-t
 We next examine the data to ensure that data files were merged correctly.
 
 ```{r, echo=TRUE}
+# print head and tail of data frame to show merge
+# worked correctly
 head(merged_data)
 tail(merged_data)
 ```
@@ -69,11 +71,12 @@ Based on the first 6 and last 6 rows of the merged data, the merge appears to ha
 **Behavior of Missing Data**
 
 ```{r}
+# get summary of missing data
 merged_data %>%
   miss_var_summary()
 ```
 
-The table below, shows the number of missing values (`NA`) for `IBU`, `ABV`, `Style`, and `ShortStyle`. A large portion of the `IBU` values are missing, which would affect insightes related to `IBU`. The number of missing values for `ABV` is less significant, but caution should be taken when working with this column. The other two columns are missing less than 1% of the rows.
+The table below, shows the number of missing values (`NA`) for `IBU`, `ABV`, `Style`, and `ShortStyle`. A large portion of the `IBU` values are missing, which would affect insightes related to `IBU`. The number of missing values for `ABV` is less significant, but caution should be taken when working with this column. The other two columns are missing less than 1% of the rows. Note: `ShortStyle` was computed from `Style`.
 
 | Column Name   | Number of Missing Values| Percent of Values Missing|
 |:-------------:|------------------------:|-------------------------:|
@@ -82,19 +85,19 @@ The table below, shows the number of missing values (`NA`) for `IBU`, `ABV`, `St
 | Style         | 5                       |0.21%                     |
 | ShortStyle    | 5                       |0.21%                     |
 
-Because only 2.57% of ABV is missing and there is no indication of a pattern for the missingness, we are comfortable assuming we can recover a consistent estimate of the mean for Alcohol-By-Volume after list-wise deletion of missing data. The missingness is quite low between states and there doesn't appear to be any distinct geographical pattern. 
-
-
 ```{r maps, echo=TRUE}
+# extract percent missing rows of IBU and ABV by state
 missing.by.state <- merged_data %>% 
   group_by(region) %>% 
   summarise(ABV_missing=prop_miss(ABV) * 100,
             IBU_missing=prop_miss(IBU) * 100)
 
+# build state data and merge beer/brewery data onto map data
 states <- map_data("state")
 map.df <- merge(states, missing.by.state, by="region", all.x=T)
 map.df <- map.df[order(map.df$order),]
 
+# percent missing ABV by state (map plot)
 ggplot(map.df, aes(x=long,y=lat,group=group, fill=ABV_missing))+
   geom_polygon()+
   geom_path()+ 
@@ -103,9 +106,12 @@ ggplot(map.df, aes(x=long,y=lat,group=group, fill=ABV_missing))+
   labs(title = 'Percent Missing ABV by State')
 ```
 
+Because only 2.57% of ABV is missing and there is no indication of a pattern for the missingness, we are comfortable assuming we can recover a consistent estimate of the mean for Alcohol-By-Volume after list-wise deletion of missing data. The missingness is quite low between states and there doesn't appear to be any distinct geographical pattern. 
+
 We turn to the question of missingness in IBU, which is a more complicated topic. 
 
 ```{r, warnings=FALSE, messages=FALSE}
+# percent missing IBU by state (map plot)
 ggplot(map.df, aes(x=long,y=lat,group=group, fill=IBU_missing))+
   geom_polygon()+
   geom_path()+ 
@@ -115,7 +121,7 @@ ggplot(map.df, aes(x=long,y=lat,group=group, fill=IBU_missing))+
 
 
 
-#missingness by style
+# missingness by style
 nabular_data %>%
   group_by(ShortStyle) %>%
   summarize(perc_miss_IBU = prop_miss(IBU) * 100,
@@ -127,8 +133,9 @@ nabular_data %>%
 ```
 
 
-
 There is clearly a relationship between the beer style, location, and missingness of IBU, so IBU cannot be missing completely at random; therefore, listwise deletion is not acceptable. We will have to look into the question of whether we can build a decent imputation model for IBU at some point in the future. Depending on the nature of the missingness, most parameters for the distribution of IBU may not be recoverable. 
+
+Since there is missing data that does not appear to be at random, we suspect the results of this analysis could be biased.
 
 **Comparison of Alcohol Content and Bitterness between States**
 
@@ -148,6 +155,7 @@ map.df <- map.df[order(map.df$order),]
 
 
 ```{r fig.width=15, fig.height=7, echo=TRUE}
+# plot median IBU by state (bar chart)
 merged_data %>%
   remove_missing(na.rm=TRUE) %>%
   group_by(State) %>%
@@ -160,6 +168,7 @@ merged_data %>%
 The plot above shows the median IBU values per state. The medians range from 61 to 19 with the highest median from Maine and the lowest median from Wisconsin.
 
 ```{r, echo=TRUE}
+# plot median IBU by state (map plot)
 ggplot(map.df, aes(x=long,y=lat,group=group))+
   geom_polygon(aes(fill=MedianIBU))+
   geom_path()+ 
@@ -171,6 +180,7 @@ ggplot(map.df, aes(x=long,y=lat,group=group))+
 The heat map of median IBU by state above shows some regional clustering of median IBU. The median of the upper west states is on the higher side of IBU, the median of the midwest is near the lower end of IBU medians, and the deep south is on the top end of IBU medians. 
 
 ```{r fig.width=15, fig.height=7, echo=TRUE}
+# plot median ABV by state (bar chart)
 merged_data %>%
   remove_missing(na.rm=TRUE) %>%
   group_by(State) %>%
@@ -184,6 +194,7 @@ merged_data %>%
 The plot above shows the median ABV values per state. The medians range from 6.25% to 4% with the highest median from Maine and the lowest median from Utah.
 
 ```{r, echo=TRUE}
+# plot median ABV by state (map plot)
 ggplot(map.df, aes(x=long,y=lat,group=group))+
   geom_polygon(aes(fill=MedianABV))+
   geom_path()+ 
@@ -223,6 +234,7 @@ The state producing the most bitter beer is Oregon with an IBU of 138. The state
 **Summary Statistics for the ABV variable.**
 
 ```{r, echo=TRUE}
+# get summary of merged data
 merged_data %>%
   summary()
 ```
@@ -240,7 +252,7 @@ The following table summerizes the summary statistics for ABV.
 | standard deviation  | 1.35 percentage points  |
 | range               | 12.7 percentage points  |
 
-
+The bulk of the data has an ABV between 5% and 6.7%. The mean and median are fairly different on this scale, likely indicating skew or influence of outliers in the distribution of this variable.
 
 **Is there an apparent relationship between the bitterness of the beer and its alcoholic content?**
 
@@ -269,6 +281,14 @@ The plot above is a scatter plot of ABV vs IBU. A simple linear regression yield
 
 
 ## Conclusion
+
+### Results of the Exploration and Analysis
+* There is evidence that the missing data for IBU and ABV is not 'at random' - the missingness related to other variables.
+* There appears to be geographoc clustering of the median IBU and median ABV of states.
+* Most beers have a moderate ABV value (5% - 6.7%).
+* There is strong evidence of a linear relationship between ABV and IBU.
+
+### Inferential Scope of Analysis
 
 The details behind the sampling process are unkwown, so it is unclear whether we can generalize our results to a wider population. We also cannot infer causation because there is insufficient theoretical knowledge to make good causal assumptions, especially wit hthe absence of randomization. The missingness of the data poses a problem as well. While the missingness of ABV lends itself to listwise deletion, the missingness of IBU is clearly not completely at random. At best, the missingness of IBU is caused primarily by its location and beer style, but further examination is needed to determine whether an imputation model can recover a consistent estimate of key parameters, like the population mean. If a consistent estimate cannot be recovered, then sampling processes and data governance must be re-examined to obtain better results. 
 

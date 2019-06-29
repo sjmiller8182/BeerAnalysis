@@ -70,7 +70,8 @@ Brewery.csv is imported with [`gather2.R`](https://github.com/KThompson0308/beer
 
 #### Generated Columns in `merged_data`
 
-`ShortStyle`: computed by extracting the most relevant string from style. Since this column is computed from `Style` it will have the same missingness structure as `Style`.
+* `ShortStyle`: computed by extracting the most relevant string from style. Since this column is computed from `Style` it will have the same missingness structure as `Style`.
+* `region`: used to map `merged_data` to the U.S. map data for heat map plotting. Generated using [`Abbreviations.csv`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/Abbreviations.csv).
 
 #### Merge Strategy
 
@@ -88,10 +89,10 @@ These variables are contained in `./analysis/data/.RData`
 ## Code
 
 * All analysis code files are located at `./analysis/`
-  * [eda_analysis.Rmd](https://github.com/KThompson0308/beeranalysis/blob/maintain_codebook/analysis/eda_analysis.Rmd) - analysis of the data set and EDA.
-  * [missing_data_analysis.R](https://github.com/KThompson0308/beeranalysis/blob/maintain_codebook/analysis/missing_data_analysis.R) - code for analyzing missing data.
+  * [eda_analysis.Rmd](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/eda_analysis.Rmd) - analysis of the data set and EDA.
+  * [missing_data_analysis.R](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/missing_data_analysis.R) - code for analyzing missing data.
 * All support code files are located at `./analysis/background_code/`
-  * [effect_size.R](https://github.com/KThompson0308/beeranalysis/blob/maintain_codebook/analysis/background_code/effect_size.R) - code for retrieving effect size for regression model.
+  * [effect_size.R](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/background_code/effect_size.R) - code for retrieving effect size for regression model.
 
 ## Libraries
 
@@ -101,6 +102,9 @@ The following R packages are required for running the code.
 * [tidyverse](https://www.tidyverse.org/)
   * ggplot2
   * dplyr
-* [pastecs](https://cran.r-project.org/web/packages/pastecs/index.html)
 * [maps](https://cran.r-project.org/package=maps)
 * [mapproj](https://cran.r-project.org/package=mapproj)
+
+## Other Resources
+
+* [`Abbreviations.csv`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/Abbreviations.csv): custom file used for converting U.S. state abbrevations to lower case, full state names.
