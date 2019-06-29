@@ -12,6 +12,7 @@ To explore a dataset of breweries and beers, attempting to find something intere
 
 * Kevin's Presentation here
 * [Analysis Presentation by Stuart Miller](https://github.com/KThompson0308/beeranalysis/blob/master/presentations/Analysis_Presentation_Stuart_Miller.pdf): A presentation covering the analysis.
+  * [Presentation Video](https://youtu.be/E9f5CHflCzM)
 * [Exploratory Analysis Presentation](http://htmlpreview.github.io/?https://github.com/KThompson0308/beeranalysis/blob/master/presentations/eda_presentation.html): A short presentation covering a small subset of the EDA work.
 
 ### Analysis Files
