@@ -19,12 +19,15 @@ To explore a dataset of breweries and beers, attempting to find something intere
 
 * [EDA Analysis (html)](http://htmlpreview.github.io/?https://github.com/KThompson0308/beeranalysis/blob/master/analysis/eda_analysis.html): A presentation covering our recent findings from the dataset. 
 * [EDA_Analysis (Rmd)](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/eda_analysis.Rmd): A markdown file with the analysis and EDA work.
-* For more information on the data cleaning and environment, see the [Codebook](https://github.com/KThompson0308/beeranalysis/blob/master/CodeBook.md).
 
 ## Data
 
 * [`Beers.csv`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/Beers.csv)<sup>1</sup>: list of 2410 US craft beers.
 * [`Breweries.csv`](https://github.com/KThompson0308/beeranalysis/blob/master/analysis/data/Breweries.csv)<sup>1</sup>: list of 558 US breweries.
+
+## Codebook
+
+The [Codebook](https://github.com/KThompson0308/beeranalysis/blob/master/CodeBook.md) provides additional details on the regarding the computational environment, code, and data.
 
 ## Repo Structure
     .
