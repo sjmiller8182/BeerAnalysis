@@ -18,7 +18,8 @@ brewery_data <- read_csv("Breweries.csv", col_types =
 abbreviation_data <- read_csv("Abbreviations.csv", col_types = 
                                 cols(
                                   State = col_character(),
-                                  Unabbreviated = col_character()
+                                  Unabbreviated = col_character(),
+                                  CensusDivision = col_factor()
                                 ))
 
 # Rename columns for merging

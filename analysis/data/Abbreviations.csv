@@ -1,52 +1,52 @@
-State,Unabbreviated
-AL,alabama
-AK,alaska
-AZ ,arizona
-AR,arkansas
-CA,california
-CO,colorado
-CT,connecticut
-DE,delaware
-DC,district of columbia
-FL,florida
-GA,georgia
-HI,hawaii
-ID,idaho
-IL,illinois
-IN,indiana
-IA,iowa
-KS,kansas
-KY,kentucky
-LA,louisiana
-ME,maine
-MD,maryland
-MA,massachusetts
-MI,michigan
-MN,minnesota
-MS,mississippi
-MO,missouri
-MT,montana
-NE,nebraska
-NV,nevada
-NH,new hampshire
-NJ,new jersey
-NM,new mexico
-NY,new york
-NC,north carolina
-ND,north dakota
-OH,ohio
-OK,oklahoma
-OR,oregon
-PA,pennsylvania
-RI,rhode island
-SC,south carolina
-SD,south dakota
-TN,tennessee
-TX,texas
-UT,utah
-VT,vermont
-VA,virginia
-WA,washington
-WV,west virginia
-WI,wisconsin
-WY,wyoming
+State,Unabbreviated,CensusDivision
+AL,alabama,east south central
+AK,alaska,pacific
+AZ ,arizona,mountain
+AR,arkansas,west south central
+CA,california,pacific
+CO,colorado,mountain
+CT,connecticut,new england
+DE,delaware,south atlantic
+DC,district of columbia,south atlantic
+FL,florida,south atlantic
+GA,georgia,south atlantic
+HI,hawaii,pacific
+ID,idaho,mountain 
+IL,illinois,east north central
+IN,indiana,east north central
+IA,iowa,west north central
+KS,kansas,west north central
+KY,kentucky,east south central
+LA,louisiana,west south central
+ME,maine,new england
+MD,maryland,south atlantic
+MA,massachusetts,new england
+MI,michigan,east north central
+MN,minnesota,west north central
+MS,mississippi,east south central
+MO,missouri,west north central
+MT,montana,mountain
+NE,nebraska,west north central
+NV,nevada,mountain
+NH,new hampshire,new england
+NJ,new jersey,middle atlantic
+NM,new mexico,mountain
+NY,new york,middle atlantic
+NC,north carolina,south atlantic
+ND,north dakota,west north central
+OH,ohio,east north central
+OK,oklahoma,west south central
+OR,oregon,pacific
+PA,pennsylvania,middle atlantic
+RI,rhode island,new england
+SC,south carolina,south atlantic
+SD,south dakota,west north central
+TN,tennessee,east south central
+TX,texas,west south central
+UT,utah,mountain
+VT,vermont,new england
+VA,virginia,south atlantic
+WA,washington,pacific
+WV,west virginia,south atlantic
+WI,wisconsin,east north central
+WY,wyoming,mountain
