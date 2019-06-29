@@ -210,3 +210,10 @@ model3 <- lm(data=merged_data, ABV ~ IBU)
 summary(model1)
 summary(model2)
 summary(model3)
+
+merged_data %>%
+  remove_missing(na.rm=TRUE) %>%
+  ggplot(aes(x=IBU, y=ABV)) +
+  geom_point(alpha=0.1) +
+  geom_smooth(method="lm") + 
+  labs(title="ABV vs IBU")
