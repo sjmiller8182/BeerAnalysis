@@ -10,7 +10,7 @@ To explore a dataset of breweries and beers, attempting to find something intere
 
 ### Presentation
 
-* [Analysis Presentation by Kevin Thompson](https://github.com/KThompson0308/beeranalysis/blob/master/presentations/Thompson_Kevin_Presentation.pptx):Powerpoint
+* [Analysis Presentation by Kevin Thompson](https://github.com/KThompson0308/beeranalysis/blob/master/presentations/Thompson_Kevin_Presentation.pptx): Powerpoint
   * [Presentation Video](https://youtu.be/voowLCE5R4k)
 * [Analysis Presentation by Stuart Miller](https://github.com/KThompson0308/beeranalysis/blob/master/presentations/Analysis_Presentation_Stuart_Miller.pdf): A presentation covering the analysis.
   * [Presentation Video](https://youtu.be/E9f5CHflCzM)
